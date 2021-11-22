@@ -10,7 +10,6 @@ class SortedArray{
         int linearSearch(int key);
         int binarySearch(int key, int low, int high);
         int getSize();
-        void printArray();
 
     private:
         int n;
