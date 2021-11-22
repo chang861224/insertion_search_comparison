@@ -24,10 +24,9 @@ class SkipList{
         SkipList(int max, float p);
         int randomLevel();
         SLNode* createSLNode(int key, int level);
-        void insertElement(int key);
-        void deleteElement(int key);
-        void searchElement(int key);
-        void displayList();
+        void Insert(int key);
+        void Delete(int key);
+        void Search(int key);
 
     private:
         // Maximum level for this skip list

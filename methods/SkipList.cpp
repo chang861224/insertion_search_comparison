@@ -52,7 +52,7 @@ SLNode* SkipList::createSLNode(int key, int level){
 }
 
 // Insert given key in skip list
-void SkipList::insertElement(int key){
+void SkipList::Insert(int key){
     SLNode* current = header;
 
     // create update array and initialize it
@@ -107,12 +107,11 @@ void SkipList::insertElement(int key){
             //update[i]->forward[i] = n;
             update[i]->setForward(i, n);
         }
-        cout << "Successfully Inserted key " << key << "\n";
     }
 }
 
 // Delete element from skip list
-void SkipList::deleteElement(int key){
+void SkipList::Delete(int key){
     SLNode* current = header;
 
     // create update array and initialize it
@@ -153,12 +152,11 @@ void SkipList::deleteElement(int key){
         // Remove levels having no elements
         while(level > 0 && header->getForward(level) == 0)
             level--;
-        cout << "Successfully deleted key " << key << "\n";
     }
 }
 
 // Search for element in skip list
-void SkipList::searchElement(int key){
+void SkipList::Search(int key){
     SLNode* current = header;
 
     /* start from highest level of skip list
@@ -176,27 +174,5 @@ void SkipList::searchElement(int key){
     /* reached level 0 and advance pointer to
        right, which is possibly our desired node*/
     current = current->getForward(0);
-
-    // If current node have key equal to
-    // search key, we have found our target node
-    if(current and current->getKey() == key)
-        cout << "Found key: " << key << "\n";
-}
-
-// Display skip list level wise
-void SkipList::displayList(){
-    cout << "\n*****Skip List*****" << "\n";
-
-    for(int i = 0 ; i <= level ; i++){
-        SLNode* node = header->getForward(i);
-        cout << "Level " << i << ": ";
-
-        while(node != NULL){
-            cout << node->getKey() << " ";
-            node = node->getForward(i);
-        }
-
-        cout << "\n";
-    }
 }
 
