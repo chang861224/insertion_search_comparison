@@ -8,7 +8,6 @@ SortedArray::SortedArray(int size){
 
 void SortedArray::Insert(int key){
     n = insertKey(key);
-    printArray();
 }
 
 int SortedArray::insertKey(int key){
