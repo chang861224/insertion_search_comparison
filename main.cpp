@@ -6,6 +6,7 @@
 #include <fstream>
 #include "methods/Treap.h"
 #include "methods/SkipList.h"
+#include "methods/SortedArray.h"
 #include "utils.h"
 using namespace std;
 
@@ -83,21 +84,99 @@ int main(int argc, char** argv){
 
         search_end = clock();
     }
+    else if(strcmp(method, "LinearSearch") == 0){
+        SortedArray sorted_array(size);
+
+        // Insert
+        insert_start = clock();
+
+        for(int i = 0 ; i < size ; i++){
+            sorted_array.Insert(array[i]);
+        }
+
+        insert_end = clock();
+
+        // Search
+        search_start = clock();
+
+        for(int i = 0 ; i < search_scale ; i++){
+            int location = sorted_array.linearSearch(search_list[i]);
+        }
+
+        search_end = clock();
+    }
+    else if(strcmp(method, "BinarySearch") == 0){
+        SortedArray sorted_array(size);
+
+        // Insert
+        insert_start = clock();
+
+        for(int i = 0 ; i < size ; i++){
+            sorted_array.Insert(array[i]);
+        }
+
+        insert_end = clock();
+
+        // Search
+        search_start = clock();
+
+        for(int i = 0 ; i < search_scale ; i++){
+            int location = sorted_array.binarySearch(search_list[i], 0, sorted_array.getSize() - 1);
+        }
+
+        search_end = clock();
+    }
     else{
         cout << "Method not found!" << endl;
         exit(1);
     }
 
+    // Duration calculation
     double insert_duration = double(insert_end - insert_start) / double(CLOCKS_PER_SEC);
     double search_duration = double(search_end - search_start) / double(CLOCKS_PER_SEC);
 
-    // Time result
-    cout << "Search method: " << method << endl;
-    cout << "Index based on 2: " << n_index << endl;
-    cout << "Size of data structure: " << size << endl;
-    cout << "Search scale: " << search_scale << endl;
-    cout << "Insertion time: " << fixed << insert_duration << setprecision(4) << " sec" << endl;
-    cout << "Search time: " << fixed << search_duration << setprecision(4) << " sec" << endl;
+    // Results
+    if(strcmp(filename, "") == 0){
+        cout << "Search method: " << method << endl;
+        cout << "Index based on 2: " << n_index << endl;
+        cout << "Size of data structure: " << size << endl;
+        cout << "Search scale: " << search_scale << endl;
+
+        // Skip list only
+        if(strcmp(method, "SkipList") == 0){
+            cout << "Number of lavel: " << level << endl;
+            cout << "Positive percentage: " << pos_percent << endl;
+        }
+
+        cout << "Insertion time: " << fixed << insert_duration << setprecision(4) << " sec" << endl;
+        cout << "Search time: " << fixed << search_duration << setprecision(4) << " sec" << endl;
+    }
+    else{
+        ofstream file;
+
+        file.open(filename, ios_base::app);
+
+        // Format: Method, Index, Size, Search scale, Level, Positive percentage, Insertion time, Search time
+        file << method << ",";
+        file << n_index << ",";
+        file << size << ",";
+        file << search_scale << ",";
+        
+        // Skip list only
+        if(strcmp(method, "SkipList") == 0){
+            file << level << ",";
+            file << pos_percent << ",";
+        }
+        else{
+            file << ",";
+            file << ",";
+        }
+
+        file << insert_duration << ",";
+        file << search_duration << endl;
+
+        file.close();
+    }
 
 	return 0;
 }
