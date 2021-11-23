@@ -11,6 +11,34 @@
 using namespace std;
 
 int main(int argc, char** argv){
+    // When no arguments input
+    if(argc == 1){
+        cout << "----------------------" << endl;
+        cout << "Options Description:" << endl;
+        cout << "\t-n_index <int>" << endl;
+        cout << "\t\tThe index based on 2, which means the length of the number array. Default is 10." << endl;
+        cout << "\t-search_scale <int>" << endl;
+        cout << "\t\tThe number of times you want to search the element in the array. Default is 100000." << endl;
+        cout << "\t-method <string>" << endl;
+        cout << "\t\tThe insertion and search method. Default is `SkipList`." << endl;
+        cout << "\t\tHere are the method options:" << endl;
+        cout << "\t\t1)SkipList 2)Treap 3)LinearSearch 4)BinarySearch" << endl;
+        cout << "\t-save <string>" << endl;
+        cout << "\t\tThe filename which the result saved. The type of file should be `.csv`." << endl;
+        cout << "\t\tIf you do not enter the filename, the result would be print out on the screen." << endl;
+        cout << "\t-level <int>" << endl;
+        cout << "\t\tThe number of level in skip list method." << endl;
+        cout << "\t-pos_percent <float>" << endl;
+        cout << "\t\tThe positive percentage in skip list method." << endl;
+        cout << "\t\tThe value should be between 0 and 1!" << endl;
+        cout << endl;
+        cout << "NOTICE: If the method is `SkipList`, the default is 3; otherwise, this argument DO NOTHING!" << endl;
+        cout << endl;
+        cout << "Usage:" << endl;
+        cout << "./main.exe -n_index 15 -search_scale 100000 -method SkipList -pos_percent 0.5 -save result.csv" << endl;
+        cout << "----------------------" << endl;
+    }
+
     srand(time(NULL));
 
     int i;
