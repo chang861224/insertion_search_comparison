@@ -1,10 +1,10 @@
-// C++ code for inserting element in skip list
 #ifndef _SKIPLIST_H_
 #define _SKIPLIST_H_
 
-#include <bits/stdc++.h>
+#include <cstdlib>
+#include <cstring>
+#include <cstddef>
 
-// Class to implement node
 class SLNode{
     public:
         SLNode(int k, int level);
@@ -15,7 +15,6 @@ class SLNode{
     private:
         int key;
 
-        // Array to hold pointers to node of different level
         SLNode **forward;
 };
 
@@ -29,17 +28,10 @@ class SkipList{
         void Search(int key);
 
     private:
-        // Maximum level for this skip list
         int MAXLVL;
-
-        // P is the fraction of the nodes with level
-        // i pointers also having level i+1 pointers
         float P;
-
-        // current level of skip list
         int level;
 
-        // pointer to header node
         SLNode* header;
 };
 
