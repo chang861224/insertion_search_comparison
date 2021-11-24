@@ -1,8 +1,6 @@
 #ifndef _SORTED_ARRAY_H_
 #define _SORTED_ARRAY_H_
 
-#include <iostream>
-
 class SortedArray{
     public:
         SortedArray(int size);

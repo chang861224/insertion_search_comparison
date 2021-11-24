@@ -11,8 +11,6 @@ void SortedArray::Insert(int key){
 }
 
 int SortedArray::insertKey(int key){
-    // Cannot insert more elements if n is already
-    // more than or equal to capacity
     if (n >= length)
         return n;
  
