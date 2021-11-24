@@ -1,7 +1,8 @@
 #ifndef _TREAP_H_
 #define _TREAP_H_
 
-#include <bits/stdc++.h>
+#include <cstdlib>
+#include <cstddef>
 
 class TNode{
     public:
