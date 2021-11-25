@@ -22,6 +22,7 @@ class SkipList{
     public:
         SkipList(int max, float p);
         int randomLevel();
+        int getLevel();
         SLNode* createSLNode(int key, int level);
         void Insert(int key);
         void Delete(int key);

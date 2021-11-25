@@ -38,6 +38,10 @@ int SkipList::randomLevel(){
     return lvl;
 }
 
+int SkipList::getLevel(){
+    return level;
+}
+
 SLNode* SkipList::createSLNode(int key, int level){
     SLNode* n = new SLNode(key, level);
     return n;
