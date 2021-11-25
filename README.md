@@ -19,7 +19,6 @@ make
 ### Execution
 Use `./main.exe` to run the program. Here are the arguments shown below:
 ```
-----------------------
 Options Description:
 	-n_index <int>
 		The index based on 2, which means the length of the number array. Default is 10.
@@ -32,7 +31,7 @@ Options Description:
 	-save <string>
 		The filename which the result saved. The type of file should be `.csv`.
 		If you do not enter the filename, the result would be print out on the screen.
-	-level <int>
+	-max_level <int>
 		The number of level in skip list method.
 	-pos_percent <float>
 		The positive percentage in skip list method.
@@ -42,5 +41,4 @@ NOTICE: If the method is `SkipList`, the default is 3; otherwise, this argument 
 
 Usage:
 ./main.exe -n_index 15 -search_scale 100000 -method SkipList -pos_percent 0.5 -save result.csv
-----------------------
 ```

@@ -26,7 +26,7 @@ int main(int argc, char** argv){
         cout << "\t-save <string>" << endl;
         cout << "\t\tThe filename which the result saved. The type of file should be `.csv`." << endl;
         cout << "\t\tIf you do not enter the filename, the result would be print out on the screen." << endl;
-        cout << "\t-level <int>" << endl;
+        cout << "\t-max_level <int>" << endl;
         cout << "\t\tThe number of level in skip list method." << endl;
         cout << "\t-pos_percent <float>" << endl;
         cout << "\t\tThe positive percentage in skip list method." << endl;
@@ -50,7 +50,8 @@ int main(int argc, char** argv){
     char* filename = new char[20];
     strcpy(filename, "");
     // slip list only
-    int level = 3;
+    int level;
+    int max_level = 3;
     float pos_percent = 0.5;
 
     // Argument parse
@@ -58,7 +59,7 @@ int main(int argc, char** argv){
     if((i = ArgPos((char*)"-search_scale", argc, argv)) > 0) search_scale = atoi(argv[i + 1]);
     if((i = ArgPos((char*)"-method", argc, argv)) > 0) strcpy(method, argv[i + 1]);
     if((i = ArgPos((char*)"-save", argc, argv)) > 0) strcpy(filename, argv[i + 1]);
-    if((i = ArgPos((char*)"-level", argc, argv)) > 0) level = atoi(argv[i + 1]);
+    if((i = ArgPos((char*)"-max_level", argc, argv)) > 0) max_level = atoi(argv[i + 1]);
     if((i = ArgPos((char*)"-pos_percent", argc, argv)) > 0) pos_percent = atof(argv[i + 1]);
 
     // Content of data
@@ -71,7 +72,7 @@ int main(int argc, char** argv){
     generateArray(search_list, search_scale, rand());
 
     if(strcmp(method, "SkipList") == 0){
-        SkipList skip_list(level, pos_percent);
+        SkipList skip_list(max_level, pos_percent);
 
         // Insert
         insert_start = clock();
@@ -90,6 +91,7 @@ int main(int argc, char** argv){
         }
 
         search_end = clock();
+        level = skip_list.getLevel();
     }
     else if(strcmp(method, "Treap") == 0){
         Treap treap(NULL);
@@ -172,7 +174,8 @@ int main(int argc, char** argv){
 
         // Skip list only
         if(strcmp(method, "SkipList") == 0){
-            cout << "Number of lavel: " << level << endl;
+            cout << "Max number of lavel: " << max_level << endl;
+            cout << "Level: " << level << endl;
             cout << "Positive percentage: " << pos_percent << endl;
         }
 
