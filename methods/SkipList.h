@@ -27,12 +27,13 @@ class SkipList{
         void Insert(int key);
         void Delete(int key);
         void Search(int key);
+        int getCopyTimes();
 
     private:
         int MAXLVL;
         float P;
         int level;
-
+        int copy_times;
         SLNode* header;
 };
 

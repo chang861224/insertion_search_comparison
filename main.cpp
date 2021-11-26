@@ -51,6 +51,7 @@ int main(int argc, char** argv){
     strcpy(filename, "");
     // slip list only
     int level;
+    double avg_copy_times;
     int max_level = 3;
     float pos_percent = 0.5;
 
@@ -91,7 +92,9 @@ int main(int argc, char** argv){
         }
 
         search_end = clock();
+        
         level = skip_list.getLevel();
+        avg_copy_times = (double)skip_list.getCopyTimes() / (double)size;
     }
     else if(strcmp(method, "Treap") == 0){
         Treap treap(NULL);
@@ -176,6 +179,7 @@ int main(int argc, char** argv){
         if(strcmp(method, "SkipList") == 0){
             cout << "Max number of lavel: " << max_level << endl;
             cout << "Level: " << level << endl;
+            cout << "Average copt times: " << avg_copy_times << endl;
             cout << "Positive percentage: " << pos_percent << endl;
         }
 
@@ -187,7 +191,7 @@ int main(int argc, char** argv){
 
         file.open(filename, ios_base::app);
 
-        // Format: Method, Index, Size, Search scale, Level, Positive percentage, Insertion time, Search time
+        // Format: Method, Index, Size, Search scale, Level, Average copy times, Positive percentage, Insertion time, Search time
         file << method << ",";
         file << n_index << ",";
         file << size << ",";
@@ -196,9 +200,11 @@ int main(int argc, char** argv){
         // Skip list only
         if(strcmp(method, "SkipList") == 0){
             file << level << ",";
+            file << avg_copy_times << ",";
             file << pos_percent << ",";
         }
         else{
+            file << ",";
             file << ",";
             file << ",";
         }

@@ -23,6 +23,7 @@ SkipList::SkipList(int max, float p){
     MAXLVL = max;
     P = p;
     level = 0;
+    copy_times = 0;
     header = new SLNode(-1, MAXLVL);
 }
 
@@ -76,6 +77,7 @@ void SkipList::Insert(int key){
         for(int i = 0 ; i <= rlevel ; i++){
             n->setForward(i, update[i]->getForward(i));
             update[i]->setForward(i, n);
+            copy_times += 1;
         }
     }
 }
@@ -117,5 +119,9 @@ void SkipList::Search(int key){
     }
 
     current = current->getForward(0);
+}
+
+int SkipList::getCopyTimes(){
+    return copy_times;
 }
 
