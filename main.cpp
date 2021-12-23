@@ -7,6 +7,7 @@
 #include "methods/Treap.h"
 #include "methods/SkipList.h"
 #include "methods/SortedArray.h"
+#include "methods/Hash.h"
 #include "utils.h"
 using namespace std;
 

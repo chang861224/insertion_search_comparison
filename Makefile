@@ -1,7 +1,7 @@
 CC = g++
 CPPFLAGS = -lm
 EXE = main.exe
-OBJS = main.o utils.o methods/SkipList.o methods/SortedArray.o methods/Treap.o
+OBJS = main.o utils.o methods/SkipList.o methods/SortedArray.o methods/Treap.o methods/Hash.o
 
 $(EXE) : $(OBJS)
 	$(CC) $(CPPFLAGS) -o $(EXE) $(OBJS)
