@@ -16,8 +16,6 @@ int main(int argc, char** argv){
     if(argc == 1){
         cout << "----------------------" << endl;
         cout << "Options Description:" << endl;
-        cout << "\t-input_file <string>" << endl;
-        cout << "\t\tThe file which save the whole numbers. It would generate a file named \"source.txt\" by default." << endl;
         cout << "\t-n_index <int>" << endl;
         cout << "\t\tThe index based on 2, which means the length of the number array. Default is 10." << endl;
         cout << "\t-search_scale <int>" << endl;
@@ -68,10 +66,18 @@ int main(int argc, char** argv){
     if((i = ArgPos((char*)"-max_level", argc, argv)) > 0) max_level = atoi(argv[i + 1]);
     if((i = ArgPos((char*)"-pos_percent", argc, argv)) > 0) pos_percent = atof(argv[i + 1]);
 
+    // Source file data
+    ifstream source(source_file);
+
+    if(source.is_open()){
+        source.close();
+    }
+    else{
+        generateSource(source_file, pow(2, n_index), rand());
+    }
+
     // Content of data
     long size = pow(2, n_index);
-    int* array = new int[size];
-    generateArray(array, size, rand());
 
     // Search list
     int* search_list = new int[search_scale];
@@ -79,12 +85,15 @@ int main(int argc, char** argv){
 
     if(strcmp(method, "SkipList") == 0){
         SkipList skip_list(max_level, pos_percent);
+        ifstream input(source_file);
+        int input_num;
 
         // Insert
         insert_start = clock();
 
         for(auto i = 0 ; i < size ; i++){
-            skip_list.Insert(array[i]);
+            input >> input_num;
+            skip_list.Insert(input_num);
         }
 
         insert_end = clock();
@@ -103,12 +112,15 @@ int main(int argc, char** argv){
     }
     else if(strcmp(method, "Treap") == 0){
         Treap treap(NULL);
+        ifstream input(source_file);
+        int input_num;
 
         // Insert
         insert_start = clock();
 
         for(auto i = 0 ; i < size ; i++){
-            treap.Insert(array[i]);
+            input >> input_num;
+            treap.Insert(input_num);
         }
 
         insert_end = clock();
@@ -124,12 +136,15 @@ int main(int argc, char** argv){
     }
     else if(strcmp(method, "LinearSearch") == 0){
         SortedArray sorted_array(size);
+        ifstream input(source_file);
+        int input_num;
 
         // Insert
         insert_start = clock();
 
         for(int i = 0 ; i < size ; i++){
-            sorted_array.Insert(array[i]);
+            input >> input_num;
+            sorted_array.Insert(input_num);
         }
 
         insert_end = clock();
@@ -145,12 +160,15 @@ int main(int argc, char** argv){
     }
     else if(strcmp(method, "BinarySearch") == 0){
         SortedArray sorted_array(size);
+        ifstream input(source_file);
+        int input_num;
 
         // Insert
         insert_start = clock();
 
         for(int i = 0 ; i < size ; i++){
-            sorted_array.Insert(array[i]);
+            input >> input_num;
+            sorted_array.Insert(input_num);
         }
 
         insert_end = clock();
@@ -166,12 +184,15 @@ int main(int argc, char** argv){
     }
     else if(strcmp(method, "Hash") == 0){
         Hash hash_table;
+        ifstream input(source_file);
+        int input_num;
 
         // Insert
         insert_start = clock();
 
         for(int i = 0 ; i < size ; i++){
-            hash_table.Insert(array[i]);
+            input >> input_num;
+            hash_table.Insert(input_num);
         }
 
         insert_end = clock();
@@ -184,8 +205,6 @@ int main(int argc, char** argv){
         }
 
         search_end = clock();
-
-        hash_table.print();
     }
     else{
         cout << "Method not found!" << endl;
