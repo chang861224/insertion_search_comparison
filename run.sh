@@ -2,9 +2,9 @@
 
 echo "method,n_index,size,search_scale,level,pos_percent,insert_time,search_time" > result.csv
 
-for method in "Treap" "SkipList" "LinearSearch" "BinarySearch" "Hash"
+for idx in $(seq 10 12)
 do
-    for idx in $(seq 10 20)
+    for method in "Treap" "SkipList" "LinearSearch" "BinarySearch" "Hash"
     do
         for time in $(seq 1 5)
         do
@@ -18,9 +18,9 @@ do
                 ./main.exe -n_index $idx -search_scale 100000 -method $method -save result.csv
             fi
         done
-
-        rm source.txt
     done
+
+    rm source.txt
 done
 
 
