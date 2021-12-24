@@ -16,6 +16,8 @@ int main(int argc, char** argv){
     if(argc == 1){
         cout << "----------------------" << endl;
         cout << "Options Description:" << endl;
+        cout << "\t-input_file <string>" << endl;
+        cout << "\t\tThe file which save the whole numbers. It would generate a file named \"source.txt\" by default." << endl;
         cout << "\t-n_index <int>" << endl;
         cout << "\t\tThe index based on 2, which means the length of the number array. Default is 10." << endl;
         cout << "\t-search_scale <int>" << endl;
@@ -23,7 +25,7 @@ int main(int argc, char** argv){
         cout << "\t-method <string>" << endl;
         cout << "\t\tThe insertion and search method. Default is `SkipList`." << endl;
         cout << "\t\tHere are the method options:" << endl;
-        cout << "\t\t1)SkipList 2)Treap 3)LinearSearch 4)BinarySearch" << endl;
+        cout << "\t\t1)SkipList 2)Treap 3)LinearSearch 4)BinarySearch 5)Hash" << endl;
         cout << "\t-save <string>" << endl;
         cout << "\t\tThe filename which the result saved. The type of file should be `.csv`." << endl;
         cout << "\t\tIf you do not enter the filename, the result would be print out on the screen." << endl;
@@ -48,6 +50,8 @@ int main(int argc, char** argv){
     int search_scale = 100000;
     char* method = new char[20];
     strcpy(method, "SkipList");
+    char* source_file = new char[20];
+    strcpy(source_file, "source.txt");
     char* filename = new char[20];
     strcpy(filename, "");
     // slip list only
@@ -159,6 +163,29 @@ int main(int argc, char** argv){
         }
 
         search_end = clock();
+    }
+    else if(strcmp(method, "Hash") == 0){
+        Hash hash_table;
+
+        // Insert
+        insert_start = clock();
+
+        for(int i = 0 ; i < size ; i++){
+            hash_table.Insert(array[i]);
+        }
+
+        insert_end = clock();
+
+        // Search
+        search_start = clock();
+
+        for(int i = 0 ; i < search_scale ; i++){
+            hash_table.Search(rand());
+        }
+
+        search_end = clock();
+
+        hash_table.print();
     }
     else{
         cout << "Method not found!" << endl;
