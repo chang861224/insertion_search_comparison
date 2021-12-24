@@ -16,6 +16,8 @@ int main(int argc, char** argv){
     if(argc == 1){
         cout << "----------------------" << endl;
         cout << "Options Description:" << endl;
+        cout << "\t-input_file <string>" << endl;
+        cout << "\t\tThe file which save the whole numbers. It would generate a file named \"source.txt\" by default." << endl;
         cout << "\t-n_index <int>" << endl;
         cout << "\t\tThe index based on 2, which means the length of the number array. Default is 10." << endl;
         cout << "\t-search_scale <int>" << endl;
@@ -59,6 +61,7 @@ int main(int argc, char** argv){
     float pos_percent = 0.5;
 
     // Argument parse
+    if((i = ArgPos((char*)"-input_file", argc, argv)) > 0) strcpy(source_file, argv[i + 1]);
     if((i = ArgPos((char*)"-n_index", argc, argv)) > 0) n_index = atoi(argv[i + 1]);
     if((i = ArgPos((char*)"-search_scale", argc, argv)) > 0) search_scale = atoi(argv[i + 1]);
     if((i = ArgPos((char*)"-method", argc, argv)) > 0) strcpy(method, argv[i + 1]);
