@@ -23,6 +23,22 @@ void generateArray(int* array, long size, int seed){
     }
 }
 
+void generateSource(char* filename, long size, int seed){
+    srand(seed);
+    std::ofstream file(filename);
+
+    if(file.is_open()){
+        for(auto i = 0 ; i < size ; i++){
+            file << rand() << "\n";
+        }
+
+        file.close();
+    }
+    else{
+        std::cout << "Cannot open the file!!" << std::endl;
+    }
+}
+
 void printArray(int* array, long size){
     for(auto i = 0 ; i < size ; i++){
         std::cout << array[i] << " ";
