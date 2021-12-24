@@ -58,7 +58,7 @@ RootNode* RootNode::getNextRoot() const{
 
 Hash::Hash(){
     do{
-        root = rand() % 1000;
+        root = rand() % 100000;
     } while(!isPrime(root));
     //std::cout << root << std::endl;
 
@@ -183,17 +183,4 @@ void Hash::print() const{
         r = r->getNextRoot();
     }
 }
-/*
-int main(){
-    Hash hast_table;
-    for(int i = 0 ; i < 1000 ; i++){
-        hast_table.Insert(rand());
-    }
-    hast_table.print();
-    for(int i = 0 ; i < 100 ; i++){
-        hast_table.Search(rand());
-    }
-    return 0;
-}
-*/
 
