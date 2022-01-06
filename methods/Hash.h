@@ -1,5 +1,5 @@
-#ifndef _HEAP_H_
-#define _HEAP_H_
+#ifndef _HASH_H_
+#define _HASH_H_
 
 #include <iostream>
 #include <cstdlib>
